@@ -23,7 +23,7 @@
  *! creating the card function  
  */
 
-let myCardMakerFunc = function(headlineInfo, name, photo) {
+let myCardMakerFunc = function(headline, name, photo) {
     let myCard = document.createElement("div");
     let myHeadline = document.createElement("div");
     let myAuthor = document.createElement("div");
@@ -47,33 +47,121 @@ let myCardMakerFunc = function(headlineInfo, name, photo) {
      */
 
     myCard.className = "card";
+    myHeadline.className = "headline";
+    myAuthor.className = "author";
+    myImg.className = "img-container";
+
+    /**
+     * !attaching elements to arguments
+     */
+
+    myHeadline.textContent = "headline";
+    myAuthorName.textContent = "name";
+    myImgSrc.src = "photo";
+
+    /**
+     * !creating the card container
+     */
+
+    let myCardContainer = document.querySelector(".cards-container ")
 
 };
 
-
+/**
+ * !grabbing the promise data from the server
+ */
 
 
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
     .then(response => {
 
-        const myBootstrapArticle = response.data.articles.bootstrap;
 
-        const myJavascriptArticle = response.data.articles.javascript;
-
-        const myJqueryArticle = response.data.articles.jquery;
-
-        const myNodeArticle = response.data.articles.node;
-
-        const myTechnologyArticle = response.data.articles.technology;
+        /**
+         * ?bootstrap article
+         */
 
 
-        response.data.article.forEach(item => {
-            const myCards = document.createElement("div");
-            myCards.className = "cards-container";
-            const myHeadline = document.createElement(`${headline}`);
+        let myBootStrapArticles = response.data.articles.bootstrap;
+        console.log("The bootstrap article data response.", response.data);
 
-        })
+        myBootStrapArticles.forEach(function(item) {
+
+            let articleCard = myCardMakerFunc(item.headline, item.name, item.photo)
+            myCardContainer.appendChild(articleCard);
+            console.log('this is item', item);
+        });
+
+
+        /**
+         * ?javascript article
+         */
+
+
+        let myJavascriptArticles = response.data.articles.javascript;
+        console.log("The javascript article data response.", response.data);
+
+        myJavascriptArticles.forEach(function(item) {
+            let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto);
+            myCardContainer.appendChild(articleCard);
+            console.log('this is item', item);
+        });
+
+
+        /**
+         * ?jquery article
+         */
+
+
+
+        let myJqueryArticles = response.data.articles.jquery;
+        console.log("The jquery article data response.", response.data);
+
+        myJqueryArticles.forEach(function(item) {
+            let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto);
+            myCardContainer.appendChild(articleCard);
+            console.log('this is item', item);
+        });
+
+
+        /**
+         * ?node article
+         */
+
+
+        let myNodeArticles = response.data.articles.node;
+        console.log("The node article data response.", response.data);
+
+        myNodeArticles.forEach(function(item) {
+            let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto);
+            myCardContainer.appendChild(articleCard);
+            console.log('this is item', item);
+        });
+
+
+        /**
+         * ?technology article
+         */
+
+
+        let myTechnologyArticles = response.data.articles.technology;
+        console.log("The technology article data response.", response.data);
+
+        myTechnologyArticles.forEach(function(item) {
+            let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto);
+            myCardContainer.appendChild(articleCard);
+            console.log('this is item', item);
+        });
+
+        /**
+         * ? end of then response
+         */
+
     })
+
+
+/**
+ * ? catch error
+ */
 
 .catch(error => {
     console.log("There is an error with the API", error);
