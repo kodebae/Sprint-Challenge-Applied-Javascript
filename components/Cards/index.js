@@ -43,28 +43,23 @@ let myCardMakerFunc = function(headline, name, photo) {
 
 
     /**
-     * !adding the class names 
+     * !adding the class lists 
      */
 
-    myCard.className = "card";
-    myHeadline.className = "headline";
-    myAuthor.className = "author";
-    myImg.className = "img-container";
+    myCard.classList.add("card");
+    myHeadline.classList.add("headline");
+    myAuthor.classList.add("author");
+    myImg.classList.add("img-container");
 
     /**
      * !attaching elements to arguments
      */
 
-    myHeadline.textContent = "headline";
-    myAuthorName.textContent = "name";
-    myImgSrc.src = "photo";
+    myHeadline.textContent = `${headline}`;
+    myAuthorName.textContent = `${name}`;
+    myImgSrc.src = `${photo}`;
 
-    /**
-     * !creating the card container
-     */
-
-    let myCardContainer = document.querySelector(".cards-container ")
-
+return myCard;
 };
 
 /**
@@ -85,10 +80,12 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
         console.log("The bootstrap article data response.", response.data);
 
         myBootStrapArticles.forEach(function(item) {
-
-            let articleCard = myCardMakerFunc(item.headline, item.name, item.photo)
+            let myCardContainer = document.querySelector(".cards-container ")
+            let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto)
             myCardContainer.appendChild(articleCard);
-            console.log('this is item', item);
+            // console.log(item);
+
+            return myCardContainer;
         });
 
 
@@ -101,9 +98,11 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
         console.log("The javascript article data response.", response.data);
 
         myJavascriptArticles.forEach(function(item) {
+            let myCardContainer = document.querySelector(".cards-container ")
             let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto);
             myCardContainer.appendChild(articleCard);
-            console.log('this is item', item);
+            // console.log(item);
+            return myCardContainer;
         });
 
 
@@ -117,9 +116,11 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
         console.log("The jquery article data response.", response.data);
 
         myJqueryArticles.forEach(function(item) {
+            let myCardContainer = document.querySelector(".cards-container ")
             let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto);
             myCardContainer.appendChild(articleCard);
-            console.log('this is item', item);
+            // console.log(item);
+            return myCardContainer;
         });
 
 
@@ -132,9 +133,11 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
         console.log("The node article data response.", response.data);
 
         myNodeArticles.forEach(function(item) {
+            let myCardContainer = document.querySelector(".cards-container ")
             let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto);
             myCardContainer.appendChild(articleCard);
-            console.log('this is item', item);
+            // console.log(item);
+            return myCardContainer;
         });
 
 
@@ -147,9 +150,11 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
         console.log("The technology article data response.", response.data);
 
         myTechnologyArticles.forEach(function(item) {
+            let myCardContainer = document.querySelector(".cards-container ")
             let articleCard = myCardMakerFunc(item.headline, item.authorName, item.authorPhoto);
             myCardContainer.appendChild(articleCard);
-            console.log('this is item', item);
+            // console.log('this is item', item);
+            return myCardContainer;
         });
 
         /**
@@ -164,6 +169,6 @@ axios.get("https://lambda-times-backend.herokuapp.com/articles")
  */
 
 .catch(error => {
-    console.log("There is an error with the API", error);
+      console.log("There is an error with the API", error);
 
-}, []);
+});
